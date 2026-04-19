@@ -10,28 +10,48 @@ void  BuscarNombrePorID(char *nombreAlumno[],int cant,int ID);
 
 int main(){
 
-    char *nombreAlumno[N],*clave,*resultado;
+    char *nombreAlumno[N],*resultado;
     char buff[120];
     int cantcaracteres;
-    int ID;
+    int ID,opcion;
     for (int i = 0; i < N; i++)
     {
         printf("\nIngrese el nombre: ");
-        scanf("%s",buff);
+        gets(buff);
         cantcaracteres = strlen(buff);
         nombreAlumno[i] = (char * )malloc(sizeof(char)*cantcaracteres+1);
         strcpy(nombreAlumno[i],buff);
     }
 
     MostrarPersonas(nombreAlumno,N);
-    printf("\nIngrese el nombre a buscar: ");
-    scanf("%s",buff);
-    resultado = BuscarNombrePorPalabra(nombreAlumno,N,buff);
-    printf("%s",resultado);
-    printf("\nIngrese el ID: ");
-    scanf("%d",&ID);
-    BuscarNombrePorID(nombreAlumno,N,ID);
-    
+
+    do
+    {
+        printf("\nIngrese una opcion: \n");
+        printf("1- buscar por ID\n");
+        printf("2- buscar por nombre\n");
+        scanf("%d",&opcion);
+    } while (opcion>2 || opcion <1);
+    fflush(stdin);
+    switch (opcion)
+    {
+    case 1:
+        printf("Ingrese el ID: \n");
+        scanf("%d",&ID);
+        BuscarNombrePorID(nombreAlumno,N,ID);
+        break;
+    case 2 :
+        printf("\nIngrese el nombre : ");
+        scanf("%s",buff);
+        resultado = BuscarNombrePorPalabra(nombreAlumno,N,buff);
+        puts(resultado);
+        break;
+    }
+
+    for (int j = 0; j < N; j++)
+    {
+        free(nombreAlumno[j]);
+    }
 
 }
 
@@ -60,7 +80,7 @@ char *BuscarNombrePorPalabra(char *nombreAlumno[],int cant,char *palabra){
     }
     if (band)
     {
-         return cadenaAux;
+         return nombreAlumno[cant];
     }else{
         return "-1";
     }
