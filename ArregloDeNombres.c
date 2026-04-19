@@ -5,13 +5,14 @@
 #define N 5
 
 void MostrarPersonas(char *nombreAlumno[],int cant);
-
+void  BuscarNombre(char *nombreAlumno[],int cant,int ID);
 
 int main(){
 
     char *nombreAlumno[N];
     char buff[120];
     int cantcaracteres;
+    int ID;
     for (int i = 0; i < N; i++)
     {
         printf("\nIngrese el nombre: ");
@@ -22,7 +23,9 @@ int main(){
     }
 
     MostrarPersonas(nombreAlumno,N);
-    
+    printf("\nIngrese el ID: ");
+    scanf("%d",&ID);
+    BuscarNombre(nombreAlumno,N,ID);
     
 
 }
@@ -32,4 +35,16 @@ void MostrarPersonas(char *nombreAlumno[],int cant){
     {
         printf("\n%s",nombreAlumno[j]);
     }
+}
+
+
+
+void  BuscarNombre(char *nombreAlumno[],int cant,int ID){
+    if (ID<=cant && ID>0)
+    {
+        printf("no se encontró el valor buscado");
+    }else{
+        printf("\n%s",nombreAlumno[ID-1]);
+    }
+    
 }
