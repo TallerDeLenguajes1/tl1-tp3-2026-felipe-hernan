@@ -64,6 +64,8 @@ char *BuscarNombrePorPalabra(char *nombreAlumno[],int cant,char *palabra){
     }else{
         return "-1";
     }
+}
+
 void  BuscarNombrePorID(char *nombreAlumno[],int cant,int ID){
     if (ID<=cant && ID>0)
     {
