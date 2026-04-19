@@ -42,9 +42,9 @@ void MostrarPersonas(char *nombreAlumno[],int cant){
 void  BuscarNombre(char *nombreAlumno[],int cant,int ID){
     if (ID<=cant && ID>0)
     {
-        printf("no se encontró el valor buscado");
-    }else{
         printf("\n%s",nombreAlumno[ID-1]);
+    }else{
+        printf("no se encontró el valor buscado");
     }
     
 }
