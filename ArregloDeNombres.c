@@ -5,14 +5,14 @@
 #define N 5
 
 void MostrarPersonas(char *nombreAlumno[],int cant);
-char *BuscarNombrePorPalabra(char *nombreAlumno[],int cant,char *palabra);
+int BuscarNombrePorPalabra(char *nombreAlumno[],int cant,char *palabra);
 void  BuscarNombrePorID(char *nombreAlumno[],int cant,int ID);
 
 int main(){
 
-    char *nombreAlumno[N],*resultado;
+    char *nombreAlumno[N];
     char buff[120];
-    int cantcaracteres;
+    int cantcaracteres,resultado;
     int ID,opcion;
     for (int i = 0; i < N; i++)
     {
@@ -44,7 +44,12 @@ int main(){
         printf("\nIngrese el nombre : ");
         scanf("%s",buff);
         resultado = BuscarNombrePorPalabra(nombreAlumno,N,buff);
-        puts(resultado);
+        if (resultado != -1)
+        {
+            printf("Nombre encontrado es: %s",nombreAlumno[resultado]);
+        }else{
+            printf("\nNombre no encontrado");
+        }
         break;
     }
 
@@ -64,15 +69,12 @@ void MostrarPersonas(char *nombreAlumno[],int cant){
 
 
 
-char *BuscarNombrePorPalabra(char *nombreAlumno[],int cant,char *palabra){
+int BuscarNombrePorPalabra(char *nombreAlumno[],int cant,char *palabra){
     
     int band = 0;
-    char *cadenaAux;
-
     while (!band && cant-1>=0)
     {
-        cadenaAux = strstr(nombreAlumno[cant-1],palabra);
-        if (cadenaAux != NULL)
+        if (strstr(nombreAlumno[cant-1],palabra) != NULL)
         {
             band = 1;
         }
@@ -80,9 +82,9 @@ char *BuscarNombrePorPalabra(char *nombreAlumno[],int cant,char *palabra){
     }
     if (band)
     {
-         return nombreAlumno[cant];
+         return cant;
     }else{
-        return "-1";
+        return -1;
     }
 }
 
